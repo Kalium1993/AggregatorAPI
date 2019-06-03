@@ -26,7 +26,7 @@ public class SercretService {
 
         Secret secret = response.getBody();
 
-        return secret;
+        return secret; 
     }
 
     HttpHeaders createHeaders(String username, String password){
