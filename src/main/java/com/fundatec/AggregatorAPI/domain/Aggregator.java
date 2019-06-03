@@ -1,15 +1,9 @@
 package com.fundatec.AggregatorAPI.domain;
 
-import javax.validation.constraints.NotNull;
 
 public class Aggregator {
-    @NotNull
     private Climate climate;
-
-    @NotNull
     private Zen zen;
-
-    @NotNull
     private Secret secret;
 
     public Aggregator() {
