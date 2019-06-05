@@ -1,6 +1,7 @@
 package com.fundatec.AggregatorAPI.service;
 
 import com.fundatec.AggregatorAPI.domain.Climate;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,8 +12,10 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ClimateService {
     public Climate getClimate() {
+        Dotenv dotenv = Dotenv.load();
+
         String url = "http://apiadvisor.climatempo.com.br/api/v1/weather/locale/5346/current?token=";
-        String token = ""; // insert a valid token
+        String token = dotenv.get("TOKEN");
 
         RestTemplate template = new RestTemplate();
 

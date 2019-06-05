@@ -1,6 +1,7 @@
 package com.fundatec.AggregatorAPI.service;
 
 import com.fundatec.AggregatorAPI.domain.Secret;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,11 +16,13 @@ import java.nio.charset.Charset;
 public class SercretService {
 
     public Secret getSecret() {
+        Dotenv dotenv = Dotenv.load();
+
         String url = "https://lp3-secret.herokuapp.com/secreto";
         RestTemplate template = new RestTemplate();
 
-        String username = ""; // insert a valid username
-        String password = ""; // insert a valid password
+        String username = dotenv.get("USERNAME");
+        String password = dotenv.get("PASSWORD");
         HttpEntity<Base64> entity = new HttpEntity(createHeaders(username, password));
 
         ResponseEntity<Secret> response = template.exchange(url, HttpMethod.POST, entity, Secret.class);
